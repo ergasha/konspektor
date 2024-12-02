@@ -9,7 +9,7 @@ from aiogram.types import Message, ReplyKeyboardRemove, InlineKeyboardMarkup, In
 
 @dp.message_handler(commands=["start"])
 async def start(message: types.Message):
-    web_app_url = "https://osonyoz-web.vercel.app/"
+    web_app_url = "https://t.me/OsonYozamiz_bot/Osonyoz"
     keyboard = InlineKeyboardMarkup().add(
         InlineKeyboardButton("Ilovani ochish", web_app=WebAppInfo(url=web_app_url))
     )
