@@ -13,11 +13,11 @@ class BigBrother(BaseMiddleware):
         if update.message:
             user = update.message.from_user.id
             full_name = update.message.from_user.full_name
-            create_user(user, full_name)
+            create_user(user)
         elif update.callback_query:
             user = update.callback_query.from_user.id
             full_name = update.callback_query.from_user.full_name
-            create_user(user, full_name)
+            create_user(user)
             if update.callback_query.data == "check_subs":
                 return
         else:

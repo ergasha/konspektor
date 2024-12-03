@@ -1,21 +1,25 @@
+import json
 from typing import Union
 from utils.db_api.sqlite import db
 import uvicorn
-from fastapi import FastAPI
-
+from fastapi import FastAPI,Request
+from utils.db_api.sqlite import db
 app = FastAPI()
+from handlers.user.admin import create_user
+
+@app.post("/add-user")
+async def add_user(request:Request):
+    body = await request.body()
+    user_id = json.loads(body)['user_id']
+    user = db.select_user(cid=user_id)
+    print(user)
+    if user :
+        return {'user':user}
+    else:
+        create_user(cid=user_id)
+        return {'user':'User created successfully'}
 
 
-@app.get("/")
-def read_root():
-    admins = db.select_all_admins()
-    print(admins)
-    return {"admins": admins}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
 
 async def run_fastapi():
     config = uvicorn.Config(app, host="0.0.0.0", port=8000)

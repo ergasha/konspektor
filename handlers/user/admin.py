@@ -13,10 +13,10 @@ def get_user_data(cid):
     return db.select_user(cid=cid)
 
 
-def create_user(cid, full_name):
+def create_user(cid):
     block_user(cid, 0)
     if not get_user_data(cid):
-        db.add_user(cid, full_name)
+        db.add_user(cid, 0)
 
 
 async def fmessage(i, cid, mid, rm, count_group, blocked):
