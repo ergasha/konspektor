@@ -9,9 +9,9 @@ from aiogram.types import Message, ReplyKeyboardRemove, InlineKeyboardMarkup, In
 
 @dp.message_handler(commands=["start"])
 async def start(message: types.Message):
-    web_app_url = "https://t.me/OsonYozamiz_bot/Osonyoz"
+    web_app_url = "https://osonyoz-web.vercel.app/"
     keyboard = InlineKeyboardMarkup().add(
-        InlineKeyboardButton("Ilovani ochish", url=web_app_url)
+        InlineKeyboardButton("Ilovani ochish", web_app=WebAppInfo(url=web_app_url))
     )
     await message.answer_photo(photo='https://t.me/yuzkashop/1153',caption=f"Salom *{message.from_user.full_name}* botimizga xush kelibsiz\n\nUshbu mini ilova yordamida siz endi telegramdan chiqmay turib konspekt qila olasiz !\n\nMuhimi hech qanday dastur yuklab olmasdan turib !",parse_mode='markdown', reply_markup=keyboard)
 
