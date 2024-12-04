@@ -7,6 +7,16 @@ from utils.db_api.sqlite import db
 app = FastAPI()
 from handlers.user.admin import create_user
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 @app.post("/add-user")
 async def add_user(request:Request):
     body = await request.body()
